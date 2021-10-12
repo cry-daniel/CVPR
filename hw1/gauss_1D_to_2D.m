@@ -26,23 +26,23 @@ end
 img=imread('test0.jpeg');
 
 %% 处理图像并写图像
-subplot(3,2,1);
+subplot(2,3,1);
 imshow(img);title("origin");
 
 Img=imfilter(img,filter1);
-subplot(3,2,3);
+subplot(2,3,3);
 imshow(Img);title("列向量滤波");
 
 Img=imfilter(img,filter2);
-subplot(3,2,4);
+subplot(2,3,4);
 imshow(Img);title("行向量滤波");
 
 Img=imfilter(Img,filter1);
-subplot(3,2,5);
+subplot(2,3,5);
 imshow(Img);title("先行再列滤波");
 
 filter=conv2(filter1,filter2);
 
 Img=imfilter(img,filter);
-subplot(3,2,6);
+subplot(2,3,6);
 imshow(Img);title("二维向量滤波");
