@@ -1,14 +1,21 @@
 from os import error
+import matplotlib
 import numpy as np
 import matplotlib.image as mg
 import matplotlib.pyplot as plt
 import math
 import configs
 import cv2 as cv
+import scipy.signal as sci
 
 def read_img(route):
     img=mg.imread(route)
     print("size : ",img.shape)
+    return img
+
+def read_img_gray(route):
+    img=read_img(route)
+    img=np.dot(img,[0.299,0.587,0.114])   #转灰度
     return img
 
 def draw(img,num,title):
@@ -98,3 +105,33 @@ def affine(img,x1,x2,x3,y1,y2,y3,forward_or_inverse=configs.forward):
     else:
         error('Unexpected Img')
     return Img
+
+def gradient(Img,draw_picture=configs.false):
+    Img_x=sci.convolve2d(Img,configs.kernel_x)
+    Img_y=sci.convolve2d(Img,configs.kernel_y)
+    '''
+    plt.subplot(1,2,1)
+    plt.imshow(Img_x,cmap='gray')
+    plt.subplot(1,2,2)
+    plt.imshow(Img_y,cmap='gray')
+    plt.show()
+    '''
+    magnitude=np.zeros(Img_x.shape)
+    theta=np.zeros(Img_x.shape)
+    for i in range(magnitude.shape[0]):
+        for j in range(magnitude.shape[1]):
+            if Img_x[i][j]==0 and Img_y[i][j]==0:
+                continue
+            magnitude[i][j]=math.sqrt(pow(Img_x[i][j],2)+pow(Img_y[i][j],2))
+            theta[i][j]=math.atan2(Img_y[i][j],Img_x[i][j])*180/math.pi
+    if draw_picture==configs.true:
+        plt.subplot(1,2,1)
+        plt.imshow(magnitude,cmap='gray')
+        plt.subplot(1,2,2)
+        #plt.imshow(theta)
+        plt.imshow(theta,cmap='gray')
+        plt.show()
+    return magnitude,theta
+
+def NMS():
+    return 1
