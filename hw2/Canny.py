@@ -23,6 +23,7 @@ case=configs.case
 maxx=-1
 minn=1e5
 
+#NMS
 for i in tqdm(range(theta.shape[0])):
     for j in range(theta.shape[1]):
         if i==0 or i==theta.shape[0]-1 or j==0 or j==theta.shape[1]-1:

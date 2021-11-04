@@ -10,7 +10,7 @@ import scipy.signal as sci
 
 def read_img(route):
     img=mg.imread(route)
-    print("size : ",img.shape)
+    print("img size : ",img.shape)
     return img
 
 def read_img_gray(route):
@@ -133,5 +133,18 @@ def gradient(Img,draw_picture=configs.false):
         plt.show()
     return magnitude,theta
 
-def NMS():
-    return 1
+def win_norm(length):
+    return np.full((length,length),1/pow(length,2))
+
+def win_gauss(length,sigma):
+    win=np.zeros((length,length))
+    mid=(length-1)/2
+    tot=0
+    for i in range(length):
+        for j in range(length):
+            win[i,j]=1/(2*math.pi*pow(sigma,2))*\
+                math.exp(-(pow((i-mid),2)+pow((j-mid),2))/(2*pow(sigma,2)))
+            tot+=win[i,j]
+    #print(win)
+    #print(tot)
+    return win

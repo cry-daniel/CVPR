@@ -6,9 +6,6 @@ import matplotlib.pyplot as plt
 
 img=utils.read_img_gray(configs.img_route)
 
-#plt.imshow(img,cmap='gray')
-#plt.show()
-
 Img=cv.GaussianBlur(img,(3,3),0.01)
 utils.gradient(Img,configs.true)
 
