@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 
 img=utils.read_img_gray(configs.img_route)
 
-win_norm=utils.win_norm(9)
+win_norm=utils.win_norm(5)
 win_gauss=utils.win_gauss(7,2)
 
 Ix=sci.convolve2d(img,configs.kernel_x,'same')
 Iy=sci.convolve2d(img,configs.kernel_y,'same')
 
-
+'''
 Ixx=sci.convolve2d(Ix*Ix,win_gauss,'same')
 Ixy=sci.convolve2d(Ix*Iy,win_gauss,'same')
 Iyy=sci.convolve2d(Iy*Iy,win_gauss,'same')
@@ -20,7 +20,7 @@ Iyy=sci.convolve2d(Iy*Iy,win_gauss,'same')
 Ixx=sci.convolve2d(Ix*Ix,win_norm,'same')
 Ixy=sci.convolve2d(Ix*Iy,win_norm,'same')
 Iyy=sci.convolve2d(Iy*Iy,win_norm,'same')
-'''
+
 
 
 R=np.zeros(Ixx.shape)
@@ -43,7 +43,7 @@ res=np.zeros(R.shape)
 res_x=[]
 res_y=[]
 #threshold=1/20*maxx
-threshold=minn+1/3.5*(maxx-minn)
+threshold=minn+1/10*(maxx-minn)
 
 for i in range(1,R.shape[0]-1):
     for j in range(1,R.shape[1]-1):

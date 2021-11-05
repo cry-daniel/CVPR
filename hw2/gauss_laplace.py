@@ -4,7 +4,7 @@ import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
 
-x_size=y_size=2
+x_size=y_size=3
 
 #draw_gauss_or_laplace=configs.gauss
 draw_gauss_or_laplace=configs.laplace

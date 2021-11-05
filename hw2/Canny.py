@@ -60,7 +60,7 @@ plt.show()
 #up_threshold=minn+2/3*(maxx-minn)
 #down_threshold=minn+1/3*(maxx-minn)
 
-threshold=minn+2/3*(maxx-minn)
+threshold=minn+1/3*(maxx-minn)
 
 for i in tqdm(range(magnitude.shape[0])):
     for j in range(magnitude.shape[1]):

@@ -1,4 +1,4 @@
-img_route='./imgs/cat3.jpeg'    # 换图片改这个就行了
+img_route='./imgs/cat1.jpeg'    # 换图片改这个就行了
 
 plt_x=2
 plt_y=3
